@@ -6,6 +6,9 @@ phases:
       java: corretto8
   pre_build:
     commands:
+    post_build:
+  commands:
+       - if [ -d "output" ]; then ls -R output; else echo "Directory 'output' does not exist"; fi
       -  ls -R output
       - echo Logging in to AWS CodeArtifact...
       - CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain nextwork --domain-owner 774305575555 --region us-east-1 --query authorizationToken --output text`
