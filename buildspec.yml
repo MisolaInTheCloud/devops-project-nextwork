@@ -6,6 +6,7 @@ phases:
       java: corretto8
   pre_build:
     commands:
+      -  ls -R output
       - echo Logging in to AWS CodeArtifact...
       - CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain nextwork --domain-owner 774305575555 --region us-east-1 --query authorizationToken --output text`
       - export CODEARTIFACT_AUTH_TOKEN
@@ -21,4 +22,4 @@ phases:
 artifacts:
   files:
     - '**/*.jar'
-  discard-paths: yes
+base-directory: output 
