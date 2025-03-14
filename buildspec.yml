@@ -20,10 +20,11 @@ phases:
   post_build:
     commands:
       - mkdir -p output
+      - cp app.jar output/
       - echo Build completed on `date`
       - echo Packaging artifacts...
       - mvn package -s settings.xml
 artifacts:
   files:
-    - '**/*.jar'
-base-directory: output 
+     - "**/*"
+ base-directory: dist 
